@@ -2,7 +2,6 @@
 .tg  {
   border-collapse:collapse;
   border-spacing:0;
-  
 }
 .tg td{
   font-family:Arial, sans-serif;font-size:14px;
@@ -10,7 +9,6 @@
   border-style:solid;border-width:1px;
   overflow:hidden;
   word-break:normal;
-  
 }
 .tg th{
   font-family:Arial, sans-serif;
@@ -20,7 +18,9 @@
   border-style:solid;
   border-width:1px;
   overflow:hidden;
-  word-break:normal;}
+  word-break:normal;
+  
+}
 .tg .tg-lmdf{
   text-decoration:none;
   font-size:12px;
