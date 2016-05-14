@@ -29,7 +29,7 @@ div.SelectAFileToLoad{
 div.LoadSelectedFile{
 	float:left;
 }
-div {
+div.class {
 	border: 1px solid gray; width: 15em; height: 5em; overflow-y: scroll;
 }
 button {
@@ -112,7 +112,7 @@ function loadFileAsText()
 	fileReader.readAsText(fileToLoad, "UTF-8");
 }
 </script>
-<div>
+<div class="class">
     <button>press me</button>
     <span contenteditable="true">editable</span>
 </div>
