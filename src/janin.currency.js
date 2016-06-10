@@ -11,7 +11,7 @@ janin.currency = {
         currency.donate = donate;
         return currency;
     },
-
+    
     name: function() {
         return janin.selectedCurrency.name;
     },
@@ -19,55 +19,53 @@ janin.currency = {
     networkVersion: function() {
         return janin.selectedCurrency.networkVersion;
     },
-
+    
     privateKeyPrefix: function() {
         return janin.selectedCurrency.privateKeyPrefix;
     },
-
+    
     WIF_RegEx: function() {
         return new RegExp("^" + janin.selectedCurrency.WIF_Start + "[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{50}$");
     },
-
+    
     CWIF_RegEx: function() {
         return new RegExp("^" + janin.selectedCurrency.CWIF_Start + "[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{51}$");
     },
-
+    
     // Switch currency
     useCurrency: function(index) {
         janin.selectedCurrency = janin.currencies[index];
 
         var coinImgUrl = "logos/" + janin.currency.name().toLowerCase() + ".png";
         document.getElementById("coinLogoImg").src = coinImgUrl;
-
+        
         // Update title depending on currency
         document.title = janin.currency.name() + " " + ninja.translator.get("title");
         document.getElementById("siteTitle").alt = janin.currency.name() + " " + ninja.translator.get("title");
-
+        
         // Update i18n link
         document.getElementById("cultureen").href = "?culture=en&currency=" + janin.currency.name().toLowerCase();
         document.getElementById("culturefr").href = "?culture=fr&currency=" + janin.currency.name().toLowerCase();
-        document.getElementById("cultureru").href = "?culture=ru&currency=" + janin.currency.name().toLowerCase();
-        document.getElementById("culturees").href = "?culture=es&currency=" + janin.currency.name().toLowerCase();
 
-        if(ninja.seeder.isDone())
-        {
-            // Regenerate a new wallet when not expensive
-            ninja.wallets.singlewallet.generateNewAddressAndKey();
-            ninja.wallets.paperwallet.build(document.getElementById('paperpassphrase').value);
-            ninja.wallets.brainwallet.view();
-        }
-
+		if(ninja.seeder.isDone())
+		{
+			// Regenerate a new wallet when not expensive
+			ninja.wallets.singlewallet.generateNewAddressAndKey();
+			ninja.wallets.paperwallet.build(document.getElementById('paperpassphrase').value);
+			ninja.wallets.brainwallet.view();
+		}
+        
         // Reset wallet tab when expensive or not applicable
         document.getElementById("bulktextarea").value = "";
-        document.getElementById("suppliedPrivateKey").value = "";
-
+		document.getElementById("suppliedPrivateKey").value = "";
+        
         // easter egg doge ;)
         if(janin.currency.name() == "Dogecoin")
         {
             janin.doge = new Doge(['wow', 'so paper wallet', 'such random', 'very pretty', 'much design', 'awesome', 'much crypto', 'such coin', 'wow!!', 'to da moon']);
             return;
         }
-
+        
         if(janin.doge != null)
         {
             janin.doge.stop();
@@ -78,7 +76,7 @@ janin.currency = {
 
 janin.currencies = [
     //                    name, networkVersion, privateKeyPrefix, WIF_Start, CWIF_Start, donate
-    janin.currency.createCurrency ("42coin",     0x08, 0x88, "5",    "M"    , "4Fs42jYtLYrUMfKEXc6arojuhRsnYnerxN"),
+janin.currency.createCurrency ("42coin",     0x08, 0x88, "5",    "M"    , "4Fs42jYtLYrUMfKEXc6arojuhRsnYnerxN"),
     janin.currency.createCurrency ("Acoin",      0x17, 0xe6, "8",    "b"    , "AJvChtExuvLgAor9aw1Xz9bkvJY7JKD9uL"),
     janin.currency.createCurrency ("Alphacoin",  0x52, 0xd2, "8",    "Y"    , "aAWhiGBDUugXC9ZBvw8CDNQH7KRurjy4Nq"),
     janin.currency.createCurrency ("Animecoin",  0x17, 0x97, "6",    "P"    , "AdA5nLS5FtPws6A3BX8aXccbP7fReptdw7"),
@@ -98,6 +96,7 @@ janin.currencies = [
     janin.currency.createCurrency ("CassubianDetk",0x1e,0x9e,"6",    "Q"    , "DBPagysmjfdkND4Zp1SM4myLenNfXpFWnG"),
     janin.currency.createCurrency ("CashCoin",   0x22, 0xa2, "6",    "[QR]" , "F3bkQC7xGZZcPFmsucYas7KuHoEwCPtGHC"),
     janin.currency.createCurrency ("Catcoin",    0x15, 0x95, "[56]", "P"    , "9rEXDemG6S3k2ddAsKFzRpnMVz3bVryYXZ"),
+	janin.currency.createCurrency ("Clams",0x89, 0x85, "5", "L" , ""),
     janin.currency.createCurrency ("Corgicoin",  0x1c, 0x9c, "6",    "Q"    , "CNwV11TaKrfB3TnBS8vQjNbWT6CNxV8GBi"),
     janin.currency.createCurrency ("CryptoBullion",0xb,0x8b, "5",    "M"    , "Cd9CgzTChm9yJQZ3SL3PUSsMkEEN8LGwCF"),
     janin.currency.createCurrency ("CryptoClub", 0x23, 0xa3, "6",    "R"    , "FKPFTw5LjoeGTZP1d3zHLfZNm91FktgPWY"),
@@ -147,6 +146,7 @@ janin.currencies = [
     janin.currency.createCurrency ("MasterDoge", 0x33, 0x8b, "5",    "M"    , "Mm4Xqy9FYZ8N1NJzuXCaJLZcw8o2cmVC7c"),
     janin.currency.createCurrency ("Mazacoin",   0x32, 0xe0, "8",    "a"    , "MLUXCv3GfNgmUSXc5Ek3ePaQ4cfsJwEXHa"),
     janin.currency.createCurrency ("Megacoin",   0x32, 0xb2, "6",    "T"    , "MPeVmJHvkXN3caneWCB5zGgtGHRRBSLmWd"),
+	 janin.currency.createCurrency ("Mintcoin", 0x33,  0xb3, "7", "T" , ""),
     janin.currency.createCurrency ("MobiusCoin", 0x00, 0x80, "5",    "[LK]" , "1HKNrUR3BaFC8u4VMfnjCuXDPrYGh7jU8S"),
     janin.currency.createCurrency ("MonetaryUnit",0x0f,0x8f, "5",    "N"    , "7R6jCc1h3frSuCrmY87B4iVPzLsZKmkwV5"),
     janin.currency.createCurrency ("Monocle",    0x32, 0xb2, "6",    "T"    , "M9CFHZjyCipuKqByD5K1sCHmt7etuCFGsc"),
@@ -179,6 +179,7 @@ janin.currencies = [
     janin.currency.createCurrency ("SongCoin",   0x3f, 0xbf, "7",    "V"    , "SSK9MXormZXgF5ZfV599okJRXYh3g9RXGN"),
     janin.currency.createCurrency ("SpreadCoin", 0x3f, 0xbf, "7",    "V"    , "SjPkh7V2KkySjL52wsD2CpEj4quTtjiaVW"),
     janin.currency.createCurrency ("StealthCoin",0x3e, 0xbe, "7",    "V"    , "SJJGGq7UyoUH1TExGJCQ6ee49ztJr2quF8"),
+	 janin.currency.createCurrency ("Startcoin", 0x7d,  0xfd, "9",    "e"   ,"scSsBHyGoCzd5MadEnCQ6J7e2Mk8Z8Y6r6 "),
     janin.currency.createCurrency ("Syscoin",    0x3f, 0xbf, "7",    "V"    , "SbycbQikGW6dWGbeDAb1NyircpAwXvCsDF"),
     janin.currency.createCurrency ("Titcoin",    0x00, 0x80, "5",    "[LK]" , "1CHAo7muicsLHdPk5q4asrEbh6aUeSPpdC"),
     janin.currency.createCurrency ("TittieCoin", 0x41, 0xc1, "7",    "V"    , "TYrdtLy9irV4u1yo2YQVCkS27RzDzBqWwJ"),
